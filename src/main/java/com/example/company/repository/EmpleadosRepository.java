@@ -4,6 +4,7 @@ import com.example.company.model.Empleado;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class EmpleadosRepository {
 
@@ -76,7 +77,7 @@ public class EmpleadosRepository {
 
         for(int i = 0; i < empleadosList.size(); i++){
 
-            if (empleadosList.get(i).getEmail() == email){
+            if (Objects.equals(empleadosList.get(i).getEmail(), email)){
 
                 encontradosByEmail.add(empleadosList.get(i));
             }
