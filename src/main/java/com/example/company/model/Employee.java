@@ -7,15 +7,15 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Empleado {
+public class Employee {
 
     private int id;
-    private String nombre;
-    private String apellido;
-    private int edad;
-    private double sueldo;
-    private int experiencia;
-    private int telefono;
+    private String name;
+    private String lastName;
+    private int age;
+    private double salary;
+    private int experience;
+    private int phone;
     private String email;
 
 
