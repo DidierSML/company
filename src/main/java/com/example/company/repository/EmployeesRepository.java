@@ -49,12 +49,12 @@ public class EmployeesRepository {
     //Actutalizar Empleado
     public Employee updateEmployeeById (Integer id, Employee updateEmployee){
 
-        for(int i = 0; i < employeesList.size(); i++){
-            if (employeesList.get(i).getId() == id){
+        for (int i = 0; i < employeesList.size(); i++) {
+            if (employeesList.get(i).getId() == id) {
                 employeesList.set(i, updateEmployee);
                 System.out.println("Actualizacion Exitosa");
+                return updateEmployee;  // Mover este retorno aquí
             }
-            return updateEmployee;
         }
         System.out.println("Este ID no pertenece a ningun empleado");
         return null;
@@ -65,10 +65,10 @@ public class EmployeesRepository {
         for (int i = 0; i < employeesList.size(); i++){
             if (employeesList.get(i).getId() == id){
                 employeesList.remove(i);
-                return "Empleado eliminado de la Base de Datos";
+                return "The Employee has been successfully removed";
             }
         }
-        return "Este ID no pertenece a ningun empleado";
+        return "This ID Does not exist in our data base";
     }
 
     //Listar Empleado por email
@@ -87,28 +87,42 @@ public class EmployeesRepository {
     }
 
     //Listar empleados con sueldo > 1000
-    public List <Employee> findByHigherSalary (double sueldo){
+    public List <Employee> findByHigherSalary (){
+
+        double highSalary = 1000;
 
         List <Employee> higherSalary = new ArrayList<>();
 
         for (int i = 0; i < employeesList.size(); i++){
-            if (employeesList.get(i).getSalary() >= sueldo){
+            if (employeesList.get(i).getSalary() >= highSalary){
                 higherSalary.add(employeesList.get(i));
             }
         }
+
+        if (higherSalary.isEmpty()){
+            System.out.println("None of the employees has a high salary");
+        }
+
         return higherSalary;
     }
 
     //Listar Empleados con > 5 años de experiencia
-    public List <Employee> findByHigherExperience (int experiencia){
+    public List <Employee> findByHigherExperience (){
+
+        int highYears = 5;
 
         List <Employee> experiencedPeople = new ArrayList<>();
 
         for (int i = 0; i < employeesList.size(); i++){
-            if (employeesList.get(i).getExperience() >= experiencia){
+            if (employeesList.get(i).getExperience() >= highYears){
                 experiencedPeople.add(employeesList.get(i));
             }
         }
+
+        if (experiencedPeople.isEmpty()){
+            System.out.println("None of the employees has a high experience");
+        }
+
         return experiencedPeople;
     }
 }

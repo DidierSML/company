@@ -28,21 +28,21 @@ public class EmployeesController {
         return  employeesService.getAllEmployees();
     }
 
-    @GetMapping("findEmployeeById/{id}")
+    @GetMapping("getEmployeeById/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Employee findEmployyeById (Integer id){
+    public Employee getEmployeeById (@PathVariable Integer id){
         return employeesService.getEmployeeById(id);
     }
 
     @PutMapping("updateEmployeeById/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Employee updateEmployee (Integer id, Employee employee){
+    public Employee updateEmployee (@PathVariable Integer id,@RequestBody Employee employee){
         return employeesService.updateEmployee(id, employee);
     }
 
     @DeleteMapping("deleteEmployeeById/{id}")
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public String deleteEmployeeById (Integer id){
+    public String deleteEmployeeById (@PathVariable Integer id){
         return employeesService.deleteEmployee(id);
     }
     @GetMapping("findEmployeeByEmail")
@@ -53,14 +53,14 @@ public class EmployeesController {
 
     @GetMapping("findEmployeeByHigherSalary")
     @ResponseStatus(HttpStatus.FOUND)
-    public List <Employee> findEmployeeByHigherSalary (@RequestParam Double salary){
-        return employeesService.findEmployeeByHighSalary(salary);
+    public List <Employee> findEmployeeByHigherSalary (){
+        return employeesService.findEmployeeByHighSalary();
     }
 
     @GetMapping("findEmployeeByHigherExperience")
     @ResponseStatus(HttpStatus.FOUND)
-    public List <Employee> findEmployeeByHigherExperience (@RequestParam Integer years){
-        return employeesService.findEmployeedByHigherExperienced(years);
+    public List <Employee> findEmployeeByHigherExperience (){
+        return employeesService.findEmployeedByHigherExperienced();
     }
 
 }

@@ -44,13 +44,13 @@ public class EmployeesService {
     }
 
     //Find Employee By High Salary
-    public List <Employee> findEmployeeByHighSalary (Double highSalary){
-        return  employeesRepository.findByHigherSalary(highSalary);
+    public List <Employee> findEmployeeByHighSalary (){
+        return  employeesRepository.findByHigherSalary();
     }
 
     //Find By Higher Experienced
-    public List <Employee> findEmployeedByHigherExperienced (Integer years){
-        return employeesRepository.findByHigherExperience(years);
+    public List <Employee> findEmployeedByHigherExperienced (){
+        return employeesRepository.findByHigherExperience();
     }
 
 
