@@ -14,7 +14,7 @@ public interface MapperEmployee {
 
     MapperEmployee MAPPER_EMPLOYEE = Mappers.getMapper(MapperEmployee.class);
 
-    Employee fromRequestToEmployee (EmployeeRequest employeeRequest);
+    Employee fromRequestToEntity (EmployeeRequest employeeRequest);
 
     EmployeeDto fromEntityToDto (Employee employee);
 

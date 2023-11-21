@@ -72,18 +72,19 @@ public class EmployeesRepository {
     }
 
     //Listar Empleado por email
-    public List <Employee> findEmployeeByEmail (String email){
+    public Employee findEmployeeByEmail (String email){
 
-        List <Employee> encontradosByEmail = new ArrayList<>();
+        //List <Employee> encontradosByEmail = new ArrayList<>();
 
         for(int i = 0; i < employeesList.size(); i++){
 
             if (employeesList.get(i).getEmail().equalsIgnoreCase(email)){
-
-                encontradosByEmail.add(employeesList.get(i));
+                return employeesList.get(i);
+               // encontradosByEmail.add(employeesList.get(i));
             }
         }
-        return encontradosByEmail;
+        System.out.println("This Email doesn´t belong to any Employee");
+        return null;
     }
 
     //Listar empleados con sueldo > 1000
