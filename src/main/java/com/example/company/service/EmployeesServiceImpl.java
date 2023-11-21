@@ -62,7 +62,7 @@ public class EmployeesServiceImpl implements EmployeeService {
         employee.setExperience(employeeRequest.getExperience());
         employee.setEmail(employeeRequest.getEmail());
 
-        Employee updatedEmployee = employeesRepository.saveEmployee(employee);
+        Employee updatedEmployee = employeesRepository.updateEmployeeById(id,employee);
 
         return mapperEmployee.fromEntityToDto(updatedEmployee);
     }
