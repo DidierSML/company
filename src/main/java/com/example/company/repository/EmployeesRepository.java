@@ -65,10 +65,10 @@ public class EmployeesRepository {
         for (int i = 0; i < employeesList.size(); i++){
             if (employeesList.get(i).getId() == id){
                 employeesList.remove(i);
-                return "The Employee has been successfully removed";
+                return "Successful Deletion";
             }
         }
-        return "This ID Does not exist in our data base";
+        return "Invalid ID";
     }
 
     //Listar Empleado por email

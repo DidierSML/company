@@ -73,11 +73,14 @@ public class EmployeesServiceImpl implements EmployeeService {
     @Override
     public String deleteEmployee (Integer id){
 
-        employeesRepository.getEmployeeById(id);
+        Employee employee = employeesRepository.getEmployeeById(id);
 
-        employeesRepository.deleteEmployeeById(id);
-
-        return "The Employee has been successfully removed";
+        if(employee != null){
+            employeesRepository.deleteEmployeeById(id);
+            return "The Employee has been deleted successfully removed";
+        }else{
+            return "This ID does not exist in our data base";
+        }
 
     }
 
@@ -91,6 +94,7 @@ public class EmployeesServiceImpl implements EmployeeService {
     }
 
     //Find Employee By High Salary
+    @Override
     public List <EmployeeDto> findEmployeeByHighSalary (){
 
         List <Employee> employeeList = employeesRepository.findByHigherSalary();
@@ -99,6 +103,7 @@ public class EmployeesServiceImpl implements EmployeeService {
     }
 
     //Find By Higher Experienced
+    @Override
     public List <EmployeeDto> findEmployeedByHigherExperienced (){
 
         List <Employee> employeeList = employeesRepository.findByHigherExperience();
