@@ -5,6 +5,7 @@ import com.example.company.dto.request.EmployeeRequest;
 import com.example.company.dto.response.EmployeeResponse;
 import com.example.company.model.Employee;
 import com.example.company.service.EmployeesServiceImpl;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +23,7 @@ public class EmployeesController {
 
     @PostMapping("saveEmployee")
     @ResponseStatus(HttpStatus.OK)
-    public EmployeeResponse saveEmployee (@RequestBody EmployeeRequest employeeRequest){
+    public EmployeeResponse saveEmployee (@Valid @RequestBody EmployeeRequest employeeRequest){
 
         return mapperEmployee.fromDtoToResponse(employeesServiceImpl.saveEmployee(employeeRequest));
 
@@ -46,7 +47,8 @@ public class EmployeesController {
 
     @PutMapping("updateEmployeeById/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public EmployeeResponse updateEmployee (@PathVariable Integer id,@RequestBody EmployeeRequest employeeRequest){
+    public EmployeeResponse updateEmployee (@PathVariable Integer id,
+                                            @Valid @RequestBody EmployeeRequest employeeRequest){
 
         return mapperEmployee.fromDtoToResponse(employeesServiceImpl.updateEmployee(id, employeeRequest));
 

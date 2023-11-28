@@ -15,7 +15,7 @@ public class Employee {
     private int age;
     private double salary;
     private int experience;
-    private int phone;
+    private String phone;
     private String email;
 
 
