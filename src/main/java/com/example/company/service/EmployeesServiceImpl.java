@@ -3,12 +3,14 @@ package com.example.company.service;
 import com.example.company.dto.EmployeeDto;
 import com.example.company.dto.mapper.MapperEmployee;
 import com.example.company.dto.request.EmployeeRequest;
+import com.example.company.exceptions.NotFoundCustomException;
 import com.example.company.model.Employee;
 import com.example.company.repository.EmployeesRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -41,46 +43,57 @@ public class EmployeesServiceImpl implements EmployeeService {
     @Override
     public EmployeeDto getEmployeeById (Integer id){
 
-        Employee employee = employeesRepository.getEmployeeById(id);
+        Employee employee = employeesRepository.getEmployeeById(id)
+                .orElseThrow(() -> new NotFoundCustomException("Employee non-existent in our System"));
+
 
         return mapperEmployee.fromEntityToDto(employee);
-
-
     }
+
+
 
     //update Employee
     @Override
     public EmployeeDto updateEmployee(Integer id, EmployeeRequest employeeRequest) {
 
-        Employee employee = employeesRepository.getEmployeeById(id);
+        //Obtener el empleado existente
+        Optional<Employee> employee = employeesRepository.getEmployeeById(id);
 
-        employee.setLastName(employeeRequest.getName());
-        employee.setLastName(employeeRequest.getLastName());
-        employee.setAge(employeeRequest.getAge());
-        employee.setSalary(employeeRequest.getSalary());
-        employee.setPhone(employeeRequest.getPhone());
-        employee.setExperience(employeeRequest.getExperience());
-        employee.setEmail(employeeRequest.getEmail());
+        //Verificar si el empleado existe
+        if (employee.isPresent()) {
+            Employee existingEmployee = employee.get();
 
-        Employee updatedEmployee = employeesRepository.updateEmployeeById(id,employee);
+            //Actualizar los campos del empleado con los valores Request
+            existingEmployee.setName(employeeRequest.getName());
+            existingEmployee.setLastName(employeeRequest.getLastName());
+            existingEmployee.setAge(employeeRequest.getAge());
+            existingEmployee.setSalary(employeeRequest.getSalary());
+            existingEmployee.setPhone(employeeRequest.getPhone());
+            existingEmployee.setExperience(employeeRequest.getExperience());
+            existingEmployee.setEmail(employeeRequest.getEmail());
 
-        return mapperEmployee.fromEntityToDto(updatedEmployee);
+            //Actualizar el empleado en el Repositorio
+            Employee updatedEmployee = employeesRepository.updateEmployeeById(id, existingEmployee);
+            //Mapear el empleado entidad y retornar una respuesta DTO
+            return mapperEmployee.fromEntityToDto(updatedEmployee);
+        } else {
+            //Si no existe el empleado, retornar esta excepcion
+            throw new NotFoundCustomException("This ID: " + id + " does not belong to any Employee");
+        }
     }
-
 
 
     //delete Employee By Id
     @Override
     public String deleteEmployee (Integer id){
 
-        Employee employee = employeesRepository.getEmployeeById(id);
+        //Obtener un empleado o lanzar una excepcion si no existe.
+        employeesRepository.getEmployeeById(id)
+                .orElseThrow(() -> new NotFoundCustomException("Employee non-existent in our System"));
 
-        if(employee != null){
-            employeesRepository.deleteEmployeeById(id);
-            return "The Employee has been deleted successfully removed";
-        }else{
-            return "This ID does not exist in our data base";
-        }
+        //De encontrarse el Id se elimina y se retorna la respuesta
+        employeesRepository.deleteEmployeeById(id);
+        return "The Employee has been successfully removed";
 
     }
 
@@ -113,3 +126,21 @@ public class EmployeesServiceImpl implements EmployeeService {
 
 
 }
+
+/*
+    //delete Employee By Id
+
+    @Override
+    public String deleteEmployee (Integer id){
+
+        Employee employee = employeesRepository.getEmployeeById(id);
+
+        if(employee != null){
+            employeesRepository.deleteEmployeeById(id);
+            return "The Employee has been deleted successfully removed";
+        }else{
+            return "This ID does not exist in our database";
+        }
+
+    }
+ */

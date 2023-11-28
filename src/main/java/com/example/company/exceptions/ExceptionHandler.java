@@ -1,13 +1,11 @@
 package com.example.company.exceptions;
 
-import org.apache.catalina.connector.Response;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
@@ -20,10 +18,10 @@ import java.util.Map;
 @RestControllerAdvice
 public class ExceptionHandler extends ResponseEntityExceptionHandler {
 
-    //Metodo en respuesta Empleado no encontrado
-    @org.springframework.web.bind.annotation.ExceptionHandler(NotFoundCustomeException.class)
+    //Metodo en respuesta Empleado no encontrado - (Using NotFoundCustomeExceptionResponse)
+    @org.springframework.web.bind.annotation.ExceptionHandler(NotFoundCustomException.class)
     @ResponseBody
-    public NotFoundCustomExceptionResponse handleEmployeeNotFoundException (NotFoundCustomeException exception){
+    public NotFoundCustomExceptionResponse handleEmployeeNotFoundException (NotFoundCustomException exception){
 
         return new NotFoundCustomExceptionResponse(HttpStatus.BAD_REQUEST, exception.getMessage(), new Date());
     }

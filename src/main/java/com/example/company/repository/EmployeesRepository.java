@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class EmployeesRepository {
@@ -35,15 +36,15 @@ public class EmployeesRepository {
     }
 
     //Metodo obtener empleado por Id
-    public Employee getEmployeeById (Integer id){
+    public Optional <Employee> getEmployeeById (Integer id){
         for (int i = 0; i < employeesList.size(); i++){
             if(employeesList.get(i).getId() == id ){
-                return employeesList.get(i);
+                return Optional.of(employeesList.get(i));
             }
         }
 
         System.out.println("Este ID no pertenece a ningun empleado");
-        return null;
+        return Optional.empty();
     }
 
     //Actutalizar Empleado
