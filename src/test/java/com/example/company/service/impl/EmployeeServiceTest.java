@@ -11,9 +11,13 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.when;
+
 
 @ExtendWith(MockitoExtension.class)//Indicamos que vamos a usar Mockito en la prueba Unitaria
 class EmployeeServiceTest {
@@ -78,7 +82,20 @@ class EmployeeServiceTest {
         EmployeeDto result = employeesServiceImpl.saveEmployee(employeeRequest);
         System.out.println("Employee saved successfully");
 
+        //Verificando que el objeto (Dto) resultante tenga el mismo "name" e "email" que el objeto (Request)
+        assertEquals(employeeRequest.getName(), result.getName());
+        assertEquals(employeeRequest.getEmail(), result.getEmail());
 
+        System.out.println("Tanto el Objeto Request como el Objeto Dto coinciden");
+
+        //Verificando si el resultado es (null), o si cumple con lo esperado.
+        assertNotNull(result);
+        System.out.println("El resultado o contenido No es null");
+
+        //Verificando Interacciones con las dependencias(mocks) - N de llamadas post ejecución método de prueba
+        Mockito.verify(mapperEmployee, times (1)).fromRequestToEntity(employeeRequest);
+        Mockito.verify(employeesRepository,times(1)).saveEmployee(employee);
+        Mockito.verify(mapperEmployee, times(1)).fromEntityToDto(employee);
 
     }
 
