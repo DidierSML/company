@@ -43,7 +43,7 @@ public class EmployeeRequest {
 }
 
 /*
- @NotEmpty integra (@NotNull y @NotBlank) pero solo funiciona para tipos de dato String
+ @NotEmpty integra (@NotNull y @NotBlank) pero solo funciona para tipos de dato String
  Si vamos a trabajar con datos como int o double la alternativa es @NotNull
 
 

@@ -18,7 +18,7 @@ import java.util.Map;
 @RestControllerAdvice
 public class ExceptionHandler extends ResponseEntityExceptionHandler {
 
-    //Metodo en respuesta Empleado no encontrado - (Using NotFoundCustomeExceptionResponse)
+    //Método en respuesta Empleado no encontrado - (Using NotFoundCustomeExceptionResponse)
     @org.springframework.web.bind.annotation.ExceptionHandler(NotFoundCustomException.class)
     @ResponseBody
     public NotFoundCustomExceptionResponse handleEmployeeNotFoundException (NotFoundCustomException exception){
@@ -26,7 +26,7 @@ public class ExceptionHandler extends ResponseEntityExceptionHandler {
         return new NotFoundCustomExceptionResponse(HttpStatus.BAD_REQUEST, exception.getMessage(), new Date());
     }
 
-    //Método Heredado de ResponseEntityExceptionHandler
+    //Método Heredado de (ResponseEntityExceptionHandler)
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
                                                                   HttpHeaders headers, HttpStatusCode status,
