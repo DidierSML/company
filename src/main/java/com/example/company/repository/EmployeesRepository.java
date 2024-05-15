@@ -13,12 +13,12 @@ public class EmployeesRepository {
     //Lista de empleados inicializada
     private List<Employee> employeesList = new ArrayList<>();
 
-    //Metodo obtener todos los empleados
+    //Método obtener todos los empleados
     public List <Employee> getAllEmployees (){
         return employeesList;
     }
 
-    //Metodo guardar empleado
+    //Método guardar empleado
     public Employee saveEmployee (Employee employee){
 
         Employee nuevoEmployee = new Employee();
@@ -35,7 +35,7 @@ public class EmployeesRepository {
         return employee;
     }
 
-    //Metodo obtener empleado por Id
+    //Método obtener empleado por Id
     public Optional <Employee> getEmployeeById (Integer id){
         for (int i = 0; i < employeesList.size(); i++){
             if(employeesList.get(i).getId() == id ){
@@ -47,7 +47,7 @@ public class EmployeesRepository {
         return Optional.empty();
     }
 
-    //Actutalizar Empleado
+    //Actualizar Empleado
     public Employee updateEmployeeById (Integer id, Employee updateEmployee){
 
         for (int i = 0; i < employeesList.size(); i++) {
@@ -72,7 +72,7 @@ public class EmployeesRepository {
         return "Invalid ID";
     }
 
-    //Listar Empleado por email
+    //Listar Empleado por Email
     public Employee findEmployeeByEmail (String email){
 
         //List <Employee> encontradosByEmail = new ArrayList<>();
