@@ -2,7 +2,6 @@ package com.example.company.service;
 
 import com.example.company.dto.EmployeeDto;
 import com.example.company.dto.request.EmployeeRequest;
-import com.example.company.model.Employee;
 
 import java.util.List;
 
@@ -22,7 +21,7 @@ public interface EmployeeService {
 
     List <EmployeeDto> findEmployeeByHighSalary ();
 
-    public List <EmployeeDto> findEmployeedByHigherExperienced ();
+    List <EmployeeDto> findEmployeedByHigherExperienced ();
 
 
 
