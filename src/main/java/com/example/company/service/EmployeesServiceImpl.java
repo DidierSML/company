@@ -77,21 +77,21 @@ public class EmployeesServiceImpl implements EmployeeService {
             //Mapear el empleado entidad y retornar una respuesta DTO
             return mapperEmployee.fromEntityToDto(updatedEmployee);
         } else {
-            //Si no existe el empleado, retornar esta excepcion
+            //Si no existe el empleado, retornar esta excepción
             throw new NotFoundCustomException("This ID: " + id + " does not belong to any Employee");
         }
     }
 
 
-    //delete Employee By Id
+    //delete Employee By -id- retornando String
     @Override
     public String deleteEmployee (Integer id){
 
-        //Obtener un empleado o lanzar una excepcion si no existe.
+        //Obtener un empleado o lanzar una excepción si no existe.
         employeesRepository.getEmployeeById(id)
                 .orElseThrow(() -> new NotFoundCustomException("Employee non-existent in our System"));
 
-        //De encontrarse el Id se elimina y se retorna la respuesta
+        //De encontrarse él (id) se elimina y se retorna la respuesta
         employeesRepository.deleteEmployeeById(id);
         return "The Employee has been successfully removed";
 
@@ -128,7 +128,7 @@ public class EmployeesServiceImpl implements EmployeeService {
 }
 
 /*
-    //delete Employee By Id
+    //delete Employee By id
 
     @Override
     public String deleteEmployee (Integer id){
