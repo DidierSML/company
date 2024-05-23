@@ -11,7 +11,7 @@ import java.util.Optional;
 public class EmployeesRepository {
 
     //Lista de empleados inicializada
-    private List<Employee> employeesList = new ArrayList<>();
+    private final List<Employee> employeesList = new ArrayList<>();
 
     //Método obtener todos los empleados
     public List <Employee> getAllEmployees (){
@@ -43,7 +43,7 @@ public class EmployeesRepository {
             }
         }
 
-        System.out.println("Este ID no pertenece a ningun empleado");
+        System.out.println("This -ID- does not belong to any Employee");
         return Optional.empty();
     }
 
@@ -53,11 +53,11 @@ public class EmployeesRepository {
         for (int i = 0; i < employeesList.size(); i++) {
             if (employeesList.get(i).getId() == id) {
                 employeesList.set(i, updateEmployee);
-                System.out.println("Actualizacion Exitosa");
+                System.out.println("Successfully updated");
                 return updateEmployee;  // Mover este retorno aquí
             }
         }
-        System.out.println("Este ID no pertenece a ningun empleado");
+        System.out.println("This -ID- does not belong to any Employee");
         return null;
     }
 
@@ -84,7 +84,7 @@ public class EmployeesRepository {
                // encontradosByEmail.add(employeesList.get(i));
             }
         }
-        System.out.println("This Email doesn´t belong to any Employee");
+        System.out.println("This -Email- does not belong to any Employee");
         return null;
     }
 

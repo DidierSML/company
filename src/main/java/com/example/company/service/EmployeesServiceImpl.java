@@ -89,7 +89,7 @@ public class EmployeesServiceImpl implements EmployeeService {
 
         //Obtener un empleado o lanzar una excepción si no existe.
         employeesRepository.getEmployeeById(id)
-                .orElseThrow(() -> new NotFoundCustomException("Employee non-existent in our System"));
+                .orElseThrow(() -> new NotFoundCustomException("Employee -non- existent in our System"));
 
         //De encontrarse él (id) se elimina y se retorna la respuesta
         employeesRepository.deleteEmployeeById(id);
