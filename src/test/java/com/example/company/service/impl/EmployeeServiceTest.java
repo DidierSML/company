@@ -20,8 +20,8 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-
-@ExtendWith(MockitoExtension.class)//Indicamos que vamos a usar Mockito en la prueba Unitaria
+//Indicamos que vamos a usar Mockito en la prueba Unitaria
+@ExtendWith(MockitoExtension.class)
 class EmployeeServiceTest {
 
     @Mock//Simulación de Dependencia involucrada en el Testeo
@@ -84,7 +84,7 @@ class EmployeeServiceTest {
         EmployeeDto result = employeesServiceImpl.saveEmployee(employeeRequest);
         System.out.println("Employee saved successfully");
 
-        //Verificando que el objeto (Dto) resultante tenga el mismo "name" e "email" que el objeto (Request)
+        //Verificando que el objeto (DTO) resultante tenga el mismo "name" e "email" que el objeto (Request)
         assertEquals(employeeRequest.getName(), result.getName());
         assertEquals(employeeRequest.getEmail(), result.getEmail());
 
